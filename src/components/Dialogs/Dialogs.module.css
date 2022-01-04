@@ -9,7 +9,6 @@
 }
 
 .dialogsTitle,
-.recipient,
 .message {
     color: #fff;
     text-decoration: none;
@@ -18,7 +17,7 @@
 .dialogsTitle {
     font-family: "beer-money", sans-serif;
     margin: 0px;
-    font-size: 26px;
+    font-size: 30px;
     text-transform: uppercase;
     font-weight: 400;
     margin-bottom: 30px;
@@ -32,4 +31,14 @@
 .recipient {
     font-family: "OpenSans", sans-serif;
     font-weight: 400;
+    color: rgba(255, 255, 255, 0.4);
+    text-decoration: none;
+    transition: color 0.3s;
+    font-size: 22px;
+    margin-bottom: 20px;
+}
+
+.recipient:hover,
+.recipient.active {
+    color: rgba(255, 255, 255, 1);
 }

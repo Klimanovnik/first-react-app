@@ -1,0 +1,36 @@
+.description {
+    display: flex;
+    flex-wrap: nowrap;
+    margin-bottom: 20px;
+}
+
+.descriptionImage {
+    min-width: 170px;
+    width: 170px;
+    height: 170px;
+}
+
+.descriptionInfo {
+    color: #fff;
+    font-family: "OpenSans", sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    margin-left: 50px;
+}
+
+.descriptionName {
+    font-family: "beer-money", sans-serif;
+    font-size: 44px;
+    margin-bottom: 20px;
+}
+
+.descriptionText {
+    margin-top: 10px;
+}
+
+.descriptionTextLabel {
+    font-family: "beer-money", sans-serif;
+    font-size: 22px;
+    margin-right: 10px;
+    text-transform: uppercase;
+}
