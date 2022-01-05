@@ -8,10 +8,8 @@
     width: 50%;
 }
 
-.dialogsTitle,
-.message {
+.dialogsTitle {
     color: #fff;
-    text-decoration: none;
 }
 
 .dialogsTitle {
@@ -26,19 +24,4 @@
 .recipients {
     display: flex;
     flex-direction: column;
-}
-
-.recipient {
-    font-family: "OpenSans", sans-serif;
-    font-weight: 400;
-    color: rgba(255, 255, 255, 0.4);
-    text-decoration: none;
-    transition: color 0.3s;
-    font-size: 22px;
-    margin-bottom: 20px;
-}
-
-.recipient:hover,
-.recipient.active {
-    color: rgba(255, 255, 255, 1);
 }

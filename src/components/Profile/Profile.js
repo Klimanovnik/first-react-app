@@ -2,11 +2,12 @@ import styles from './Profile.module.css';
 import MyPosts from './MyPosts/MyPosts.js';
 import Description from './Description/Description';
 
-function Profile() {
+function Profile(props) {
+
     return (
         <section className={styles.profile}>
             <Description />
-            <MyPosts />
+            <MyPosts post={props.profile.post} />
         </section>
     );
 }

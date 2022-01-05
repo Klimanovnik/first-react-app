@@ -3,9 +3,22 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+const data = {
+  profile: {
+    post: [
+      { id: 1, text: "Hello" },
+      { id: 2, text: "Qwerty" },
+      { id: 3, text: "Ahahaha" },
+      { id: 4, text: "Ololo" },
+      { id: 5, text: "asddfdgfsgd" }
+    ]
+  },
+  data: "data"
+};
+
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <App app={data} />
   </React.StrictMode>,
   document.getElementById('root')
 );
