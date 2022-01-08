@@ -18,6 +18,7 @@
     font-size: 36px;
     margin-bottom: 20px;
     transform-origin: 0% 50% 0;
+    text-transform: capitalize;
 }
 
 .item:last-child {

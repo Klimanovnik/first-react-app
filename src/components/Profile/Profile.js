@@ -6,8 +6,8 @@ function Profile(props) {
 
     return (
         <section className={styles.profile}>
-            <Description />
-            <MyPosts post={props.profile.post} />
+            <Description description={props.profile.description}/>
+            <MyPosts myPosts={props.profile.myPosts} />
         </section>
     );
 }
