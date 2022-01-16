@@ -6,7 +6,6 @@ import Profile from './components/Profile/Profile';
 import Dialogs from './components/Dialogs/Dialogs';
 
 function App(props) {
-
     return (
         <BrowserRouter>
             <div className="app">
@@ -16,8 +15,24 @@ function App(props) {
                         <Navigation />
                         <div className="main-content">
                             <Routes>
-                                <Route path="/profile/*" element={<Profile profile={props.app.profile} />} />
-                                <Route path="/dialogs/*" element={<Dialogs dialogs={props.app.dialogs} />} />
+                                <Route
+                                    path="/profile/*"
+                                    element={
+                                        <Profile
+                                            profile={props.store.getState().profile}
+                                            changeNewPostField={props.store.changeNewPostField.bind(props.store)}
+                                            addNewPost={props.store.addNewPost.bind(props.store)}
+                                        />
+                                    }
+                                />
+                                <Route
+                                    path="/dialogs/*"
+                                    element={
+                                        <Dialogs
+                                            dialogs={props.store.getState().dialogs}
+                                        />
+                                    }
+                                />
                             </Routes>
                         </div>
                     </div>

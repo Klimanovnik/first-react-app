@@ -3,11 +3,16 @@ import MyPosts from './MyPosts/MyPosts.js';
 import Description from './Description/Description';
 
 function Profile(props) {
-
     return (
         <section className={styles.profile}>
-            <Description description={props.profile.description}/>
-            <MyPosts myPosts={props.profile.myPosts} />
+            <Description
+                description={props.profile.description}
+            />
+            <MyPosts
+                myPosts={props.profile.myPosts}
+                changeNewPostField={props.changeNewPostField}
+                addNewPost={props.addNewPost}
+            />
         </section>
     );
 }
