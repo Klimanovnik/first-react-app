@@ -20,8 +20,7 @@ function App(props) {
                                     element={
                                         <Profile
                                             profile={props.store.getState().profile}
-                                            changeNewPostField={props.store.changeNewPostField.bind(props.store)}
-                                            addNewPost={props.store.addNewPost.bind(props.store)}
+                                            dispatch={props.store.dispatch.bind(props.store)}
                                         />
                                     }
                                 />

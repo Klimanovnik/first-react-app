@@ -59,9 +59,17 @@ const store = {
             ]
         }
     },
+    _subscriber() {
+        console.log("Subscriber is not defined");
+    },
+
     getState() {
         return this._state;
     },
+    subscribe(observer) {
+        this._subscriber = observer;
+    },
+
     changeNewPostField(newValue) {
         this._state.profile.myPosts.newPostText = newValue;
         this._subscriber(this);
@@ -75,11 +83,19 @@ const store = {
         this._state.profile.myPosts.newPostText = "";
         this._subscriber(this);
     },
-    _subscriber() {
-        console.log("Subscriber is not defined");
-    },
-    subscribe(observer) {
-        this._subscriber = observer;
+
+    dispatch(action) {
+        const type = action.type.toLowerCase().split("");
+        type.forEach(function (letter, index, array) {
+            if (letter === "-") {
+                array[index + 1] = array[index + 1].toUpperCase();
+                array.splice(index, 1);
+            }
+        });
+
+        const method = type.join("");
+
+        action.arguments ? this[method](...action.arguments) : this[method]();
     }
 };
 

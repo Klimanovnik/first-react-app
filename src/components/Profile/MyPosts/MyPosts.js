@@ -6,12 +6,17 @@ function MyPosts(props) {
 
     const addPostField = React.createRef();
 
-    const newPostChange = function () {
-        props.changeNewPostField(addPostField.current.value);
+    const changeNewPostField = function () {
+        props.dispatch({
+            type: "CHANGE-NEW-POST-FIELD",
+            arguments: [addPostField.current.value]
+        });
     };
 
-    const addPost = function () {
-        props.addNewPost();
+    const addNewPost = function () {
+        props.dispatch({
+            type: "ADD-NEW-POST"
+        });
     };
 
     return (
@@ -21,8 +26,8 @@ function MyPosts(props) {
                     ref={addPostField}
                     type="text"
                     value={props.myPosts.newPostText}
-                    onChange={newPostChange} />
-                <button onClick={addPost}>{props.myPosts.addPostButtonText}</button>
+                    onChange={changeNewPostField} />
+                <button onClick={addNewPost}>{props.myPosts.addPostButtonText}</button>
             </div>
             <div className={styles.posts}>
                 {props.myPosts.posts.map(post => <Post key={post.id} postText={post.text} />)}

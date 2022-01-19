@@ -10,8 +10,7 @@ function Profile(props) {
             />
             <MyPosts
                 myPosts={props.profile.myPosts}
-                changeNewPostField={props.changeNewPostField}
-                addNewPost={props.addNewPost}
+                dispatch={props.dispatch}
             />
         </section>
     );
