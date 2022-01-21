@@ -27,17 +27,17 @@ const store = {
                 name: "Nikita",
                 other: [
                     {
-                        id: 1,
+                        id: 0,
                         label: "Date of Birth",
                         text: "August 26"
                     },
                     {
-                        id: 2,
+                        id: 1,
                         label: "City",
                         text: "Zaraysk"
                     },
                     {
-                        id: 3,
+                        id: 2,
                         label: "About me",
                         text: "Hello, everyone ! This is my first React application."
                     }
@@ -46,17 +46,18 @@ const store = {
         },
         dialogs: {
             recipients: [
-                { id: 1, name: "Dima" },
-                { id: 2, name: "Mike" },
-                { id: 3, name: "Fedor" },
-                { id: 4, name: "Slava" }
+                { id: 0, name: "Dima" },
+                { id: 1, name: "Mike" },
+                { id: 2, name: "Fedor" },
+                { id: 3, name: "Slava" }
             ],
             messages: [
-                { id: 1, text: "Hello" },
-                { id: 2, text: "Yo" },
-                { id: 3, text: "How are you ?" },
-                { id: 4, text: "I'am OK" }
-            ]
+                { id: 0, text: "Hello" },
+                { id: 1, text: "Yo" },
+                { id: 2, text: "How are you ?" },
+                { id: 3, text: "I'am OK" }
+            ],
+            newMessageText: "",
         }
     },
     _subscriber() {
@@ -81,6 +82,19 @@ const store = {
             text: this._state.profile.myPosts.newPostText
         });
         this._state.profile.myPosts.newPostText = "";
+        this._subscriber(this);
+    },
+    changeNewMessageText(newValue) {
+        this._state.dialogs.newMessageText = newValue;
+        this._subscriber(this);
+    },
+    addNewMessage() {
+        const messages = this._state.dialogs.messages;
+        messages.push({
+            id: messages.length,
+            text: this._state.dialogs.newMessageText
+        });
+        this._state.dialogs.newMessageText = "";
         this._subscriber(this);
     },
 

@@ -3,6 +3,20 @@ import Message from './Message/Message.js';
 import Recipient from './Recipient/Recipient.js';
 
 function Dialogs(props) {
+
+    const changeNewMessageText = function (event) {
+        props.dispatch({
+            type: "CHANGE-NEW-MESSAGE-TEXT",
+            arguments: [event.currentTarget.value]
+        });
+    };
+
+    const addNewMessage = function () {
+        props.dispatch({
+            type: "ADD-NEW-MESSAGE"
+        });
+    };
+
     return (
         <section className={styles.dialogs}>
             <nav className={styles.dialogSelection}>
@@ -16,6 +30,11 @@ function Dialogs(props) {
                 <div className={styles.messages}>
                     {props.dialogs.messages.map(message => <Message key={message.id} message={message.text} />)}
                 </div>
+                <input
+                    type="text"
+                    value={props.dialogs.newMessageText}
+                    onChange={changeNewMessageText} />
+                <button onClick={addNewMessage}>Send Message</button>
             </div>
         </section>
     );

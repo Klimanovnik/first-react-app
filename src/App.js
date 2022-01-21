@@ -29,6 +29,7 @@ function App(props) {
                                     element={
                                         <Dialogs
                                             dialogs={props.store.getState().dialogs}
+                                            dispatch={props.store.dispatch.bind(props.store)}
                                         />
                                     }
                                 />
