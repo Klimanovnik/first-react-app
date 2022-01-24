@@ -7,7 +7,7 @@ function Dialogs(props) {
     const changeNewMessageText = function (event) {
         props.dispatch({
             type: "CHANGE-NEW-MESSAGE-TEXT",
-            arguments: [event.currentTarget.value]
+            newMessageText: event.currentTarget.value
         });
     };
 

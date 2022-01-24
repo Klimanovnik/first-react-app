@@ -4,12 +4,10 @@ import Post from './Post/Post.js';
 
 function MyPosts(props) {
 
-    const addPostField = React.createRef();
-
-    const changeNewPostField = function () {
+    const changeNewPostField = function (event) {
         props.dispatch({
             type: "CHANGE-NEW-POST-FIELD",
-            arguments: [addPostField.current.value]
+            newPostText: event.currentTarget.value
         });
     };
 
@@ -23,7 +21,6 @@ function MyPosts(props) {
         <section className={styles.myposts}>
             <div className={styles.addPost}>
                 <input
-                    ref={addPostField}
                     type="text"
                     value={props.myPosts.newPostText}
                     onChange={changeNewPostField} />

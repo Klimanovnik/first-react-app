@@ -1,3 +1,6 @@
+import profileReducer from "./profileReducer";
+import dialogsReducer from "./dialogsReducer";
+
 const store = {
     _state: {
         profile: {
@@ -71,45 +74,11 @@ const store = {
         this._subscriber = observer;
     },
 
-    changeNewPostField(newValue) {
-        this._state.profile.myPosts.newPostText = newValue;
-        this._subscriber(this);
-    },
-    addNewPost() {
-        const posts = this._state.profile.myPosts.posts;
-        posts.push({
-            id: posts.length,
-            text: this._state.profile.myPosts.newPostText
-        });
-        this._state.profile.myPosts.newPostText = "";
-        this._subscriber(this);
-    },
-    changeNewMessageText(newValue) {
-        this._state.dialogs.newMessageText = newValue;
-        this._subscriber(this);
-    },
-    addNewMessage() {
-        const messages = this._state.dialogs.messages;
-        messages.push({
-            id: messages.length,
-            text: this._state.dialogs.newMessageText
-        });
-        this._state.dialogs.newMessageText = "";
-        this._subscriber(this);
-    },
-
     dispatch(action) {
-        const type = action.type.toLowerCase().split("");
-        type.forEach(function (letter, index, array) {
-            if (letter === "-") {
-                array[index + 1] = array[index + 1].toUpperCase();
-                array.splice(index, 1);
-            }
-        });
+        profileReducer(this._state.profile, action);
+        dialogsReducer(this._state.dialogs, action);
 
-        const method = type.join("");
-
-        action.arguments ? this[method](...action.arguments) : this[method]();
+        this._subscriber(this);
     }
 };
 
