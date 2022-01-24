@@ -1,4 +1,49 @@
-const profileReducer = function (state, action) {
+const initialState = {
+    myPosts: {
+        posts: [
+            {
+                id: 0,
+                text: "Hello"
+            },
+            {
+                id: 1,
+                text: "Qwerty"
+            },
+            {
+                id: 2,
+                text: "Ahahaha"
+            },
+            {
+                id: 3,
+                text: "Ololo"
+            }
+        ],
+        newPostText: "",
+        addPostButtonText: "Add Post",
+    },
+    description: {
+        name: "Nikita",
+        other: [
+            {
+                id: 0,
+                label: "Date of Birth",
+                text: "August 26"
+            },
+            {
+                id: 1,
+                label: "City",
+                text: "Zaraysk"
+            },
+            {
+                id: 2,
+                label: "About me",
+                text: "Hello, everyone ! This is my first React application."
+            }
+        ]
+    }
+};
+
+const profileReducer = function (state = initialState, action) {
 
     switch (action.type) {
         case "ADD-NEW-POST":
@@ -8,10 +53,12 @@ const profileReducer = function (state, action) {
                 text: state.myPosts.newPostText
             });
             state.myPosts.newPostText = "";
-            break;
+            return state;
         case "CHANGE-NEW-POST-FIELD":
             state.myPosts.newPostText = action.newPostText;
-            break;
+            return state;
+        default:
+            return state;
     }
 };
 

@@ -1,4 +1,20 @@
-const dialogsReducer = function (state, action) {
+const initialState = {
+    recipients: [
+        { id: 0, name: "Dima" },
+        { id: 1, name: "Mike" },
+        { id: 2, name: "Fedor" },
+        { id: 3, name: "Slava" }
+    ],
+    messages: [
+        { id: 0, text: "Hello" },
+        { id: 1, text: "Yo" },
+        { id: 2, text: "How are you ?" },
+        { id: 3, text: "I'am OK" }
+    ],
+    newMessageText: "",
+};
+
+const dialogsReducer = function (state = initialState, action) {
 
     switch (action.type) {
         case "ADD-NEW-MESSAGE":
@@ -8,10 +24,12 @@ const dialogsReducer = function (state, action) {
                 text: state.newMessageText
             });
             state.newMessageText = "";
-            break;
+            return state;
         case "CHANGE-NEW-MESSAGE-TEXT":
             state.newMessageText = action.newMessageText;
-            break;
+            return state;
+        default:
+            return state;
     }
 };
 

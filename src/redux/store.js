@@ -78,7 +78,7 @@ const store = {
         profileReducer(this._state.profile, action);
         dialogsReducer(this._state.dialogs, action);
 
-        this._subscriber(this);
+        this._subscriber();
     }
 };
 
