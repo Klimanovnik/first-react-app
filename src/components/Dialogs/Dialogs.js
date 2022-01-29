@@ -4,17 +4,12 @@ import Recipient from './Recipient/Recipient.js';
 
 function Dialogs(props) {
 
-    const changeNewMessageText = function (event) {
-        props.dispatch({
-            type: "CHANGE-NEW-MESSAGE-TEXT",
-            newMessageText: event.currentTarget.value
-        });
+    const onChangeNewMessage = function (event) {
+        props.changeNewMessage(event.currentTarget.value);
     };
 
-    const addNewMessage = function () {
-        props.dispatch({
-            type: "ADD-NEW-MESSAGE"
-        });
+    const onAddNewMessage = function () {
+        props.addNewMessage();
     };
 
     return (
@@ -33,8 +28,8 @@ function Dialogs(props) {
                 <input
                     type="text"
                     value={props.dialogs.newMessageText}
-                    onChange={changeNewMessageText} />
-                <button onClick={addNewMessage}>Send Message</button>
+                    onChange={onChangeNewMessage} />
+                <button onClick={onAddNewMessage}>Send Message</button>
             </div>
         </section>
     );

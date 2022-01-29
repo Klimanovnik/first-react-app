@@ -3,7 +3,7 @@ import './App.css';
 import Header from './components/Header/Header';
 import Navigation from './components/Navigation/Navigation';
 import Profile from './components/Profile/Profile';
-import Dialogs from './components/Dialogs/Dialogs';
+import DialogsContainer from './components/Dialogs/DialogsContainer';
 
 function App(props) {
     return (
@@ -27,7 +27,7 @@ function App(props) {
                                 <Route
                                     path="/dialogs/*"
                                     element={
-                                        <Dialogs
+                                        <DialogsContainer
                                             dialogs={props.store.getState().dialogs}
                                             dispatch={props.store.dispatch.bind(props.store)}
                                         />

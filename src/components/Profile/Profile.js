@@ -1,6 +1,6 @@
 import styles from './Profile.module.css';
-import MyPosts from './MyPosts/MyPosts.js';
 import Description from './Description/Description';
+import MyPostsContainer from './MyPosts/MyPostsContainer';
 
 function Profile(props) {
     return (
@@ -8,7 +8,7 @@ function Profile(props) {
             <Description
                 description={props.profile.description}
             />
-            <MyPosts
+            <MyPostsContainer
                 myPosts={props.profile.myPosts}
                 dispatch={props.dispatch}
             />
