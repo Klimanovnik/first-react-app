@@ -1,14 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import store from './redux/store.js';
+//import store from './redux/store.js';
 import reduxStore from './redux/reduxStore';
 import reportWebVitals from './reportWebVitals';
+//import StoreContext from './StoreContext';
+import { Provider } from 'react-redux';
 
 const render = function () {
     ReactDOM.render(
         <React.StrictMode>
-            <App store={reduxStore} />
+            <Provider store={reduxStore}>
+                <App store={reduxStore} />
+            </Provider>
         </React.StrictMode>,
         document.getElementById('root')
     );

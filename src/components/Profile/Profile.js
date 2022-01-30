@@ -8,10 +8,7 @@ function Profile(props) {
             <Description
                 description={props.profile.description}
             />
-            <MyPostsContainer
-                myPosts={props.profile.myPosts}
-                dispatch={props.dispatch}
-            />
+            <MyPostsContainer />
         </section>
     );
 }

@@ -1,27 +1,28 @@
 import MyPosts from './MyPosts.js';
+import { connect } from 'react-redux';
 
-function MyPostsContainer(props) {
-
-    const changeNewPostField = function (newValue) {
-        props.dispatch({
-            type: "CHANGE-NEW-POST-FIELD",
-            newPostText: newValue
-        });
+const mapStateToProps = function (state) {
+    return {
+        myPosts: state.profile.myPosts
     };
+};
 
-    const addNewPost = function () {
-        props.dispatch({
-            type: "ADD-NEW-POST"
-        });
+const mapDispatchToProps = function (dispatch) {
+    return {
+        addNewPost() {
+            dispatch({
+                type: "ADD-NEW-POST"
+            });
+        },
+        changeNewPostField(newValue) {
+            dispatch({
+                type: "CHANGE-NEW-POST-FIELD",
+                newPostText: newValue
+            });
+        }
     };
+};
 
-    return (
-        <MyPosts
-            myPosts={props.myPosts}
-            addNewPost={addNewPost}
-            changeNewPostField={changeNewPostField}
-        />
-    );
-}
+const MyPostsContainer = connect(mapStateToProps, mapDispatchToProps)(MyPosts);
 
 export default MyPostsContainer;
