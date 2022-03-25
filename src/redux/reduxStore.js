@@ -9,4 +9,6 @@ const reducers = combineReducers({
 
 const reduxStore = createStore(reducers);
 
+window.store = reduxStore;
+
 export default reduxStore;

@@ -11,17 +11,24 @@ function MyPosts(props) {
         props.addNewPost();
     };
 
+    const onEnter = function (event) {
+        if (event.code === "Enter" && !event.repeat) {
+            onAddPost();
+        }
+    };
+
     return (
         <section className={styles.myposts}>
             <div className={styles.addPost}>
                 <input
                     type="text"
-                    value={props.myPosts.newPostText}
-                    onChange={onPostChange} />
-                <button onClick={onAddPost}>{props.myPosts.addPostButtonText}</button>
+                    value={props.newPostText}
+                    onChange={onPostChange}
+                    onKeyDown={onEnter} />
+                <button onClick={onAddPost}>Add Post</button>
             </div>
             <div className={styles.posts}>
-                {props.myPosts.posts.map(post => <Post key={post.id} postText={post.text} />)}
+                {props.posts.map(post => <Post key={post.id} postText={post.text} />)}
             </div>
         </section>
     );

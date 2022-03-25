@@ -18,8 +18,7 @@ const initialState = {
                 text: "Ololo"
             }
         ],
-        newPostText: "",
-        addPostButtonText: "Add Post",
+        newPostText: ""
     },
     description: {
         name: "Nikita",
@@ -53,10 +52,11 @@ const profileReducer = function (state = initialState, action) {
                 text: state.myPosts.newPostText
             });
             state.myPosts.newPostText = "";
-            return state;
+
+            return { ...state };
         case "CHANGE-NEW-POST-FIELD":
             state.myPosts.newPostText = action.newPostText;
-            return state;
+            return { ...state };
         default:
             return state;
     }

@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 
 const mapStateToProps = function (state) {
     return {
-        myPosts: state.profile.myPosts
+        posts: state.profile.myPosts.posts,
+        newPostText: state.profile.myPosts.newPostText
     };
 };
 

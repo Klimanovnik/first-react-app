@@ -23,8 +23,7 @@ const store = {
                         text: "Ololo"
                     }
                 ],
-                newPostText: "",
-                addPostButtonText: "Add Post",
+                newPostText: ""
             },
             description: {
                 name: "Nikita",
