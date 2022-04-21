@@ -22,13 +22,14 @@ function MyPosts(props) {
             <div className={styles.addPost}>
                 <input
                     type="text"
-                    value={props.newPostText}
+                    value={props.myPosts.newPostText}
                     onChange={onPostChange}
-                    onKeyDown={onEnter} />
+                    onKeyDown={onEnter}
+                />
                 <button onClick={onAddPost}>Add Post</button>
             </div>
             <div className={styles.posts}>
-                {props.posts.map(post => <Post key={post.id} postText={post.text} />)}
+                {props.myPosts.posts.map(post => <Post key={post.id} postText={post.text}/>)}
             </div>
         </section>
     );

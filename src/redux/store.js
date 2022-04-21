@@ -48,18 +48,48 @@ const store = {
         },
         dialogs: {
             recipients: [
-                { id: 0, name: "Dima" },
-                { id: 1, name: "Mike" },
-                { id: 2, name: "Fedor" },
-                { id: 3, name: "Slava" }
+                {id: 0, name: "Dima"},
+                {id: 1, name: "Mike"},
+                {id: 2, name: "Fedor"},
+                {id: 3, name: "Slava"}
             ],
             messages: [
-                { id: 0, text: "Hello" },
-                { id: 1, text: "Yo" },
-                { id: 2, text: "How are you ?" },
-                { id: 3, text: "I'am OK" }
+                {id: 0, text: "Hello"},
+                {id: 1, text: "Yo"},
+                {id: 2, text: "How are you ?"},
+                {id: 3, text: "I'am OK"}
             ],
             newMessageText: "",
+        },
+        usersPage: {
+            users: [
+                {
+                    id: 0,
+                    icon: "",
+                    followed: true,
+                    userDescription: {
+                        fullName: "Nikita",
+                        status: "Hi! I'am create my first React app.",
+                        location: {
+                            country: "Russia",
+                            city: "Zaraysk"
+                        }
+                    }
+                },
+                {
+                    id: 1,
+                    icon: "",
+                    followed: false,
+                    userDescription: {
+                        fullName: "Boris",
+                        status: "Music is my life",
+                        location: {
+                            country: "USA",
+                            city: "Seattle"
+                        }
+                    }
+                }
+            ]
         }
     },
     _subscriber() {

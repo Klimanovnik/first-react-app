@@ -8,8 +8,9 @@ function Navigation() {
     };
 
     const navigationItems = [
-        { id: 1, value: "profile" },
-        { id: 2, value: "dialogs" },
+        { id: 0, value: "profile" },
+        { id: 1, value: "dialogs" },
+        { id: 2, value: "users" },
         { id: 3, value: "news" },
         { id: 4, value: "music" },
         { id: 5, value: "settings" }

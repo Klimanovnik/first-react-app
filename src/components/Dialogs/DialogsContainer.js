@@ -1,27 +1,28 @@
 import Dialogs from "./Dialogs";
+import {connect} from 'react-redux';
 
-function DialogsContainer(props) {
-
-    const changeNewMessage = function (newValue) {
-        props.dispatch({
-            type: "CHANGE-NEW-MESSAGE-TEXT",
-            newMessageText: newValue
-        });
+const mapStateToProps = function (state) {
+    return {
+        dialogs: state.dialogs
     };
-
-    const addNewMessage = function () {
-        props.dispatch({
-            type: "ADD-NEW-MESSAGE"
-        });
-    };
-
-    return (
-        <Dialogs
-            changeNewMessage={changeNewMessage}
-            addNewMessage={addNewMessage}
-            dialogs={props.dialogs}
-        />
-    );
 };
+
+const mapDispatchToProps = function (dispatch) {
+    return {
+        addNewMessage() {
+            dispatch({
+                type: "ADD-NEW-MESSAGE"
+            });
+        },
+        changeNewMessage(newValue) {
+            dispatch({
+                type: "CHANGE-NEW-MESSAGE-TEXT",
+                newMessageText: newValue
+            });
+        }
+    };
+};
+
+const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs);
 
 export default DialogsContainer;

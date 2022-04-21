@@ -46,20 +46,35 @@ const profileReducer = function (state = initialState, action) {
 
     switch (action.type) {
         case "ADD-NEW-POST":
-            const posts = state.myPosts.posts;
-            posts.push({
-                id: posts.length,
-                text: state.myPosts.newPostText
-            });
-            state.myPosts.newPostText = "";
+            if (state.myPosts.newPostText === "") {
+                return state;
+            }
 
-            return { ...state };
+            return {
+                ...state,
+                myPosts: {
+                    ...state.myPosts,
+                    posts: [
+                        ...state.myPosts.posts,
+                        {
+                            id: state.myPosts.posts.length,
+                            text: state.myPosts.newPostText
+                        }
+                    ],
+                    newPostText: ""
+                }
+            };
         case "CHANGE-NEW-POST-FIELD":
-            state.myPosts.newPostText = action.newPostText;
-            return { ...state };
+            return {
+                ...state,
+                myPosts: {
+                    ...state.myPosts,
+                    newPostText: action.newPostText
+                }
+            };
         default:
             return state;
     }
 };
 
-export default profileReducer;
+export {profileReducer};

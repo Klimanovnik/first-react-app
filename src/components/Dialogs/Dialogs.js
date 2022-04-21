@@ -12,6 +12,12 @@ function Dialogs(props) {
         props.addNewMessage();
     };
 
+    const onEnter = function (event) {
+        if (event.code === "Enter" && !event.repeat) {
+            onAddNewMessage();
+        }
+    };
+
     return (
         <section className={styles.dialogs}>
             <nav className={styles.dialogSelection}>
@@ -28,7 +34,9 @@ function Dialogs(props) {
                 <input
                     type="text"
                     value={props.dialogs.newMessageText}
-                    onChange={onChangeNewMessage} />
+                    onChange={onChangeNewMessage}
+                    onKeyDown={onEnter}
+                />
                 <button onClick={onAddNewMessage}>Send Message</button>
             </div>
         </section>
