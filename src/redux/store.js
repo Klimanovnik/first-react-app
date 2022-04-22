@@ -64,30 +64,26 @@ const store = {
         usersPage: {
             users: [
                 {
-                    id: 0,
-                    icon: "",
-                    followed: true,
-                    userDescription: {
-                        fullName: "Nikita",
-                        status: "Hi! I'am create my first React app.",
-                        location: {
-                            country: "Russia",
-                            city: "Zaraysk"
-                        }
-                    }
+                    name: "klimanovnik",
+                    id: 23599,
+                    uniqueUrlName: null,
+                    photos: {
+                        small: null,
+                        large: null
+                    },
+                    status: null,
+                    followed: false
                 },
                 {
-                    id: 1,
-                    icon: "",
-                    followed: false,
-                    userDescription: {
-                        fullName: "Boris",
-                        status: "Music is my life",
-                        location: {
-                            country: "USA",
-                            city: "Seattle"
-                        }
-                    }
+                    nam: "nskpsv",
+                    id: 23598,
+                    uniqueUrlName: null,
+                    photos: {
+                        small: null,
+                        large: null
+                    },
+                    status: null,
+                    followed: false
                 }
             ]
         }
@@ -111,4 +107,4 @@ const store = {
     }
 };
 
-export default store;
+//export default store;
