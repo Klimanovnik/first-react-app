@@ -7,6 +7,10 @@ class Users extends React.Component {
 
     constructor(props)  {
         super(props);
+    }
+
+    componentDidMount() {
+        alert("Paste Users");
 
         if (this.props.users.length === 0) {
             axios
@@ -15,6 +19,10 @@ class Users extends React.Component {
                     this.props.setUsers(response.data.items);
                 });
         }
+    }
+
+    componentDidUpdate() {
+        alert("Update Users");
     }
 
     render() {
