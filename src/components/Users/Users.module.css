@@ -8,3 +8,13 @@
     width: 50px;
     height: 50px;
 }
+
+.usersPage {
+    cursor: pointer;
+    margin-right: 7px;
+}
+
+.usersCurrentPage {
+    font-weight: bold;
+    font-size: 18px;
+}

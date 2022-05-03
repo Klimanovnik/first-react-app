@@ -64,19 +64,19 @@ const store = {
         usersPage: {
             users: [
                 {
-                    name: "klimanovnik",
-                    id: 23599,
+                    name: "PVZh",
+                    id: 23769,
                     uniqueUrlName: null,
                     photos: {
-                        small: null,
-                        large: null
+                        "small": null,
+                        "large": null
                     },
                     status: null,
                     followed: false
                 },
                 {
-                    nam: "nskpsv",
-                    id: 23598,
+                    name: "oksana_dantalion",
+                    id: 23768,
                     uniqueUrlName: null,
                     photos: {
                         small: null,

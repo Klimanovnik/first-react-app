@@ -1,8 +1,15 @@
 const TOGGLE_FOLLOW = "TOGGLE_FOLLOW";
 const SET_USERS = "SET_USERS";
+const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
+const SET_USERS_TOTAL_COUNT = "SET_USERS_TOTAL_COUNT";
 
 const initialState = {
-    users: []
+    users: [],
+    pagination: {
+        countPerRequest: 5,
+        usersTotalCount: 25,
+        currentPage: 1
+    }
 };
 
 export const usersReducer = function (state = initialState, action) {
@@ -24,7 +31,23 @@ export const usersReducer = function (state = initialState, action) {
         case SET_USERS:
             return {
                 ...state,
-                users: [...state.users, ...action.users]
+                users: action.users
+            };
+        case SET_CURRENT_PAGE:
+            return {
+                ...state,
+                pagination: {
+                    ...state.pagination,
+                    currentPage: action.newPage
+                }
+            };
+        case SET_USERS_TOTAL_COUNT:
+            return {
+                ...state,
+                pagination: {
+                    ...state.pagination,
+                    usersTotalCount: action.usersTotalCount
+                }
             };
         default:
             return state;
@@ -42,5 +65,19 @@ export const setUsersAC = function (users) {
     return {
         type: SET_USERS,
         users
+    };
+};
+
+export const setCurrentPageAC = function (newPage) {
+    return {
+        type: SET_CURRENT_PAGE,
+        newPage
+    };
+};
+
+export const setUsersTotalCountAC = function (usersTotalCount) {
+    return {
+        type: SET_USERS_TOTAL_COUNT,
+        usersTotalCount
     };
 };
