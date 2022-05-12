@@ -3,11 +3,11 @@ import axios from "axios";
 import Users from "./Users";
 import {connect} from 'react-redux';
 import {
-    setUsersTotalCountAC,
-    setCurrentPageAC,
-    setUsersAC,
-    toggleFollowAC,
-    toggleFetchingAC
+    setUsersTotalCount,
+    setCurrentPage,
+    setUsers,
+    toggleFollow,
+    toggleFetching
 } from "../../redux/usersReducer";
 
 const mapStateToProps = function (state) {
@@ -18,24 +18,12 @@ const mapStateToProps = function (state) {
     };
 };
 
-const mapDispatchToProps = function (dispatch) {
-    return {
-        toggleFollow(userID) {
-            dispatch(toggleFollowAC(userID));
-        },
-        setUsers(users) {
-            dispatch(setUsersAC(users));
-        },
-        setCurrentPage(newPage) {
-            dispatch(setCurrentPageAC(newPage));
-        },
-        setUsersTotalCount(usersTotalCount) {
-            dispatch(setUsersTotalCountAC(usersTotalCount));
-        },
-        toggleFetching(isFetching) {
-            dispatch(toggleFetchingAC(isFetching));
-        }
-    };
+const mapDispatchToProps = {
+        toggleFollow,
+        setUsers,
+        setCurrentPage,
+        setUsersTotalCount,
+        toggleFetching
 };
 
 class UsersServerAPI extends React.Component {

@@ -3,15 +3,17 @@ const SET_USERS = "SET_USERS";
 const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
 const SET_USERS_TOTAL_COUNT = "SET_USERS_TOTAL_COUNT";
 const T_F = "TOGGLE_FETCHING";
+const S_U = "SET_USER";
 
 const initialState = {
     users: [],
     pagination: {
         countPerRequest: 5,
-        usersTotalCount: 25,
+        usersTotalCount: 100,
         currentPage: 1
     },
-    isFetching: false
+    isFetching: false,
+    user: null
 };
 
 export const usersReducer = function (state = initialState, action) {
@@ -56,42 +58,57 @@ export const usersReducer = function (state = initialState, action) {
                 ...state,
                 isFetching: action.isFetching
             };
+        case S_U:
+            return {
+                ...state,
+                user: action.newUser
+            };
         default:
             return state;
     }
 };
 
-export const toggleFollowAC = function (userID) {
+
+// Action Creators
+
+export const toggleFollow = function (userID) {
     return {
         type: TOGGLE_FOLLOW,
         userID
     };
 };
 
-export const setUsersAC = function (users) {
+export const setUsers = function (users) {
     return {
         type: SET_USERS,
         users
     };
 };
 
-export const setCurrentPageAC = function (newPage) {
+export const setCurrentPage = function (newPage) {
     return {
         type: SET_CURRENT_PAGE,
         newPage
     };
 };
 
-export const setUsersTotalCountAC = function (usersTotalCount) {
+export const setUsersTotalCount = function (usersTotalCount) {
     return {
         type: SET_USERS_TOTAL_COUNT,
         usersTotalCount
     };
 };
 
-export const toggleFetchingAC = function (isFetching) {
+export const toggleFetching = function (isFetching) {
     return {
         type: T_F,
         isFetching
+    };
+};
+
+export const setUser = function (newUser) {
+    return {
+        type: S_U,
+        newUser
     };
 };

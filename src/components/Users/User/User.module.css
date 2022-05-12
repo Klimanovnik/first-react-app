@@ -1,0 +1,12 @@
+.user {
+    display: block;
+}
+
+.userDescription {
+    color: #fff;
+}
+
+.userImage {
+    width: 150px;
+    height: 150px;
+}

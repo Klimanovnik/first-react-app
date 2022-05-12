@@ -1,6 +1,7 @@
 import styles from './Users.module.css';
-import defaultUserSmallPhoto from '../../assets/img/defaultUserSmallPhoto.png';
+import defaultUserPhoto from '../../assets/img/defaultUserPhoto.png';
 import Preloader from "../Common/Preloader/Preloader";
+import {NavLink} from "react-router-dom";
 
 const Users = function (props) {
     return (
@@ -40,32 +41,34 @@ const Users = function (props) {
                             props.users.map(user => {
                                 return (
                                     <div key={user.id} className={styles.user}>
-                                        <div>
+                                        <NavLink to={"/users/" + user.id} className={styles.userLink}>
                                             <img className={styles.userIcon}
                                                  src={
                                                      user.photos.small
                                                          ? user.photos.small
-                                                         : defaultUserSmallPhoto
+                                                         : defaultUserPhoto
                                                  }
                                                  alt="No Image"
                                             />
-                                            <button
-                                                type="button"
-                                                onClick={() => {
-                                                    props.toggleFollow(user.id);
-                                                }}
-                                            >
-                                                {user.followed ? "Отписаться" : "Подписаться"}
-                                            </button>
-                                        </div>
-                                        <div className={styles.userDescription}>
-                                            <div className={styles.fullName}>
-                                                {user.name}
+                                            <div className={styles.userDescription}>
+                                                <div className={styles.fullName}>
+                                                    {user.name}
+                                                </div>
+                                                <div className={styles.status}>
+                                                    {user.status}
+                                                </div>
                                             </div>
-                                            <div className={styles.status}>
-                                                {user.status}
-                                            </div>
-                                        </div>
+                                        </NavLink>
+
+                                        <button
+                                            type="button"
+                                            onClick={() => {
+                                                props.toggleFollow(user.id);
+                                            }}
+                                            className={styles.userButton}
+                                        >
+                                            {user.followed ? "Отписаться" : "Подписаться"}
+                                        </button>
                                     </div>
                                 );
                             })
