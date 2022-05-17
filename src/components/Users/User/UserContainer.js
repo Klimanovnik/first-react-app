@@ -25,7 +25,6 @@ class UserServerAPI extends React.Component {
             axios
                 .get(`https://social-network.samuraijs.com/api/1.0/profile/${userIdForRequest}`)
                 .then(response => {
-                    //console.log("New Request");
                     this.props.setUser(response.data);
                 });
         }
