@@ -37,3 +37,7 @@
 .userButton {
     cursor: pointer;
 }
+
+.userButton:disabled {
+    cursor: not-allowed;
+}
