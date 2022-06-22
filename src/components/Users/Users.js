@@ -67,6 +67,8 @@ const Users = function (props) {
                                         <button
                                             type="button"
                                             onClick={() => {
+                                                props.setUserFollowingInProgress(true, user.id);
+
                                                 const requestType = user.followed ? "delete" : "post";
 
                                                 const requestOptions = {
@@ -99,13 +101,15 @@ const Users = function (props) {
                                                     }
                                                 )
                                                     .then(response => {
+                                                        props.setUserFollowingInProgress(false, user.id);
+
                                                         if (response.data.resultCode === 0) {
                                                             props.toggleFollow(user.id);
                                                         }
                                                     });
                                             }}
                                             className={styles.userButton}
-                                            disabled={!props.isAuth}
+                                            disabled={!props.isAuth || props.disabledButtons.some(id => id === user.id)}
                                         >
                                             {user.followed ? "Отписаться" : "Подписаться"}
                                         </button>
