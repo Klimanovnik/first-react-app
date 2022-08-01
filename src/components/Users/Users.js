@@ -2,7 +2,6 @@ import styles from './Users.module.css';
 import defaultUserPhoto from '../../assets/img/defaultUserPhoto.png';
 import Preloader from "../Common/Preloader/Preloader";
 import {NavLink} from "react-router-dom";
-import axios from "axios";
 
 const Users = function (props) {
     return (
@@ -67,46 +66,7 @@ const Users = function (props) {
                                         <button
                                             type="button"
                                             onClick={() => {
-                                                props.setUserFollowingInProgress(true, user.id);
-
-                                                const requestType = user.followed ? "delete" : "post";
-
-                                                const requestOptions = {
-                                                    withCredentials: true,
-                                                    headers: {
-                                                        "API-KEY": "c00d2ff4-69c2-49cb-bfec-cd6ef83bd398"
-                                                    }
-                                                };
-
-                                                let optionsForDelete = {};
-                                                let optionsForPost = {};
-
-                                                if (requestType === "delete") {
-                                                    optionsForDelete = {
-                                                        ...requestOptions
-                                                    };
-                                                } else {
-                                                    optionsForPost = {
-                                                        ...requestOptions
-                                                    };
-                                                }
-
-                                                axios
-                                                    [requestType](`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`,
-                                                    {
-                                                        ...optionsForDelete
-                                                    },
-                                                    {
-                                                        ...optionsForPost
-                                                    }
-                                                )
-                                                    .then(response => {
-                                                        props.setUserFollowingInProgress(false, user.id);
-
-                                                        if (response.data.resultCode === 0) {
-                                                            props.toggleFollow(user.id);
-                                                        }
-                                                    });
+                                                props.toggleFollowThunkCreator(user);
                                             }}
                                             className={styles.userButton}
                                             disabled={!props.isAuth || props.disabledButtons.some(id => id === user.id)}

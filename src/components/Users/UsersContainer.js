@@ -7,9 +7,10 @@ import {
   setUsers,
   toggleFollow,
   toggleFetching,
-  setUserFollowingInProgress
+  setUserFollowingInProgress,
+  getUsersThunkCreator,
+  toggleFollowThunkCreator
 } from "../../redux/usersReducer";
-import {usersAPI} from "../../api/api";
 
 const mapStateToProps = function (state) {
   return {
@@ -27,31 +28,23 @@ const mapDispatchToProps = {
   setCurrentPage,
   setUsersTotalCount,
   toggleFetching,
-  setUserFollowingInProgress
+  setUserFollowingInProgress,
+  getUsersThunkCreator,
+  toggleFollowThunkCreator
 };
 
 class UsersServerAPI extends React.Component {
   componentDidMount() {
     if (this.props.users.length === 0) {
-      this.props.toggleFetching(true);
-
-      usersAPI.getUsers(this.props.pagination.countPerRequest, this.props.pagination.currentPage).then(data => {
-        //this.props.setUsersTotalCount(response.data.totalCount);
-        this.props.toggleFetching(false);
-        this.props.setUsers(data.items);
-      });
+      this.props.getUsersThunkCreator(this.props.pagination.countPerRequest, this.props.pagination.currentPage);
     }
   }
 
   onPageChanged = (newPage) => {
     this.props.setCurrentPage(newPage);
     this.props.setUsers([]);
-    this.props.toggleFetching(true);
 
-    usersAPI.getUsers(this.props.pagination.countPerRequest, newPage).then(data => {
-      this.props.toggleFetching(false);
-      this.props.setUsers(data.items);
-    });
+    this.props.getUsersThunkCreator(this.props.pagination.countPerRequest, newPage);
   }
 
   render() {
