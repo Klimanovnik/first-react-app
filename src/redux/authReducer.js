@@ -1,3 +1,5 @@
+import {authAPI} from "../api/api";
+
 const S_A_D = "SET_AUTH_DATA";
 
 const initialState = {
@@ -31,5 +33,15 @@ export const setAuthData = function (authData) {
     return {
         type: S_A_D,
         authData
+    };
+};
+
+export const checkAuthThunkCreator = () => {
+    return (dispatch) => {
+        authAPI.checkAuth().then(({ resultCode, data }) => {
+            if (resultCode === 0) {
+                dispatch(setAuthData(data));
+            }
+        });
     };
 };

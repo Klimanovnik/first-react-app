@@ -1,8 +1,7 @@
 import React from "react";
-import axios from "axios";
 import Header from "./Header";
 import {connect} from 'react-redux';
-import {setAuthData} from "../../redux/authReducer";
+import {checkAuthThunkCreator} from "../../redux/authReducer";
 
 const mapStateToProps = function (state) {
     return {
@@ -12,20 +11,12 @@ const mapStateToProps = function (state) {
 };
 
 const mapDispatchToProps = {
-    setAuthData
+    checkAuthThunkCreator
 };
 
 class HeaderServerAPI extends React.Component {
     componentDidMount() {
-        axios
-            .get(`https://social-network.samuraijs.com/api/1.0/auth/me`, {
-                withCredentials: true
-            })
-            .then(response => {
-                if (response.data.resultCode === 0) {
-                    this.props.setAuthData(response.data.data);
-                }
-            });
+        this.props.checkAuthThunkCreator();
     }
 
     render() {

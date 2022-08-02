@@ -2,39 +2,34 @@ import React from "react";
 import User from "./User";
 import {connect} from 'react-redux';
 import {withRouter} from "react-router-dom";
-import {setUser} from "../../../redux/usersReducer";
-import {usersAPI} from "../../../api/api";
+import {getUserThunkCreator} from "../../../redux/usersReducer";
 
 const mapStateToProps = function (state) {
-  return {
-    user: state.usersPage.user
-  };
+    return {
+        user: state.usersPage.user
+    };
 };
 
 const mapDispatchToProps = {
-  setUser
+    getUserThunkCreator
 };
 
 class UserServerAPI extends React.Component {
-  componentDidMount() {
-    const userIdForRequest = +this.props.match.params.userId;
+    componentDidMount() {
+        const userIdForRequest = +this.props.match.params.userId;
 
-    if (userIdForRequest !== this.props.user?.userId) {
-      this.props.setUser(null);
-
-      usersAPI.getUser(userIdForRequest).then(data => {
-        this.props.setUser(data);
-      });
+        if (userIdForRequest !== this.props.user?.userId) {
+            this.props.getUserThunkCreator(userIdForRequest);
+        }
     }
-  }
 
-  render() {
-    return (
-      <User
-        {...this.props}
-      />
-    );
-  }
+    render() {
+        return (
+            <User
+                {...this.props}
+            />
+        );
+    }
 }
 
 const UserContainer = connect(mapStateToProps, mapDispatchToProps)(withRouter(UserServerAPI));

@@ -157,3 +157,13 @@ export const toggleFollowThunkCreator = ({id, followed}) => {
         });
     };
 };
+
+export const getUserThunkCreator = (userIdForRequest) => {
+    return (dispatch) => {
+        dispatch(setUser(null));
+
+        usersAPI.getUser(userIdForRequest).then(data => {
+            dispatch(setUser(data));
+        });
+    };
+};

@@ -24,7 +24,17 @@ export const usersAPI = {
 
     followAndUnfollow(id, isFollow) {
         return axiosInstance[isFollow ? "delete" : "post"](
-            `https://social-network.samuraijs.com/api/1.0/follow/${id}`
+            `follow/${id}`
+        ).then(response => response.data);
+    }
+
+};
+
+export const authAPI = {
+
+    checkAuth () {
+        return axiosInstance.get(
+            `auth/me`
         ).then(response => response.data);
     }
 

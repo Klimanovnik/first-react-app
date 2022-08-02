@@ -1,6 +1,7 @@
 import styles from './Dialogs.module.css';
 import Message from './Message/Message.js';
 import Recipient from './Recipient/Recipient.js';
+import { Redirect } from "react-router-dom";
 
 function Dialogs(props) {
 
@@ -17,6 +18,10 @@ function Dialogs(props) {
             onAddNewMessage();
         }
     };
+
+    if (!props.isAuth) {
+        return <Redirect to="/login" />;
+    }
 
     return (
         <section className={styles.dialogs}>
