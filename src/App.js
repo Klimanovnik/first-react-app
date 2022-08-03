@@ -62,7 +62,7 @@ function App(props) {
                                 path="/login"
                                 render={
                                     () => {
-                                        return <Login/>;
+                                        return <Login />;
                                     }
                                 }
                             />
