@@ -1,3 +1,7 @@
+import {myProfileAPI} from "../api/api";
+
+const S_N_S = "SET_NEW_STATUS";
+
 const initialState = {
     myPosts: {
         posts: [
@@ -20,6 +24,7 @@ const initialState = {
         ],
         newPostText: ""
     },
+    myStatus: "",
     description: {
         name: "Nikita",
         other: [
@@ -42,7 +47,7 @@ const initialState = {
     }
 };
 
-const profileReducer = function (state = initialState, action) {
+export const profileReducer = function (state = initialState, action) {
 
     switch (action.type) {
         case "ADD-NEW-POST":
@@ -72,9 +77,29 @@ const profileReducer = function (state = initialState, action) {
                     newPostText: action.newPostText
                 }
             };
+        case S_N_S:
+            return {
+                ...state,
+                myStatus: action.newStatus
+            };
         default:
             return state;
     }
 };
 
-export {profileReducer};
+const setNewStatus = function (newStatus) {
+    return {
+        type: S_N_S,
+        newStatus
+    };
+};
+
+export const putMyStatusThunkCreator = (newStatus) => {
+    return (dispatch) => {
+        myProfileAPI.putMyStatus(newStatus).then(data => {
+            if (data.resultCode === 0) {
+                dispatch(setNewStatus(newStatus));
+            }
+        });
+    };
+};

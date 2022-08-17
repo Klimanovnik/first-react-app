@@ -26,15 +26,32 @@ export const usersAPI = {
         return axiosInstance[isFollow ? "delete" : "post"](
             `follow/${id}`
         ).then(response => response.data);
+    },
+
+    getUserStatus(userIdForRequest) {
+        return axiosInstance.get(
+            `/profile/status/${userIdForRequest}`
+        ).then(response => response.data);
     }
 
 };
 
 export const authAPI = {
 
-    checkAuth () {
+    checkAuth() {
         return axiosInstance.get(
             `auth/me`
+        ).then(response => response.data);
+    }
+
+};
+
+export const myProfileAPI = {
+
+    putMyStatus(status) {
+        return axiosInstance.put(
+            `/profile/status`,
+            {status}
         ).then(response => response.data);
     }
 

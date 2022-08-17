@@ -1,13 +1,13 @@
 import styles from './Description.module.css';
 import image from './img/image.jpg';
-import Status from "./Status";
+import MyStatus from "./MyStatus";
 
 function Description(props) {
     return (
         <div className={styles.description}>
             <div className={styles.descriptionImage}>
                 <img src={image} alt="" width="100%" height="100%" />
-                <Status />
+                <MyStatus />
             </div>
             <div className={styles.descriptionInfo}>
                 <div className={styles.descriptionName}>{props.description.name}</div>

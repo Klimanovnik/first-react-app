@@ -6,7 +6,8 @@ import {getUserThunkCreator} from "../../../redux/usersReducer";
 
 const mapStateToProps = function (state) {
     return {
-        user: state.usersPage.user
+        user: state.usersPage.user,
+        status: state.usersPage.status
     };
 };
 

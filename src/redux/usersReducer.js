@@ -7,6 +7,7 @@ const SET_USERS_TOTAL_COUNT = "SET_USERS_TOTAL_COUNT";
 const T_F = "TOGGLE_FETCHING";
 const S_U = "SET_USER";
 const S_U_F_I_P = "SET_USER_FOLLOWING_IN_PROGRESS";
+const S_S = "SET_STATUS";
 
 const initialState = {
     users: [],
@@ -17,6 +18,7 @@ const initialState = {
     },
     isFetching: false,
     user: null,
+    status: null,
     disabledButtons: []
 };
 
@@ -66,6 +68,11 @@ export const usersReducer = function (state = initialState, action) {
             return {
                 ...state,
                 user: action.newUser
+            };
+        case S_S:
+            return {
+                ...state,
+                status: action.status
             };
         case S_U_F_I_P:
             return {
@@ -124,6 +131,13 @@ export const setUser = function (newUser) {
     };
 };
 
+export const setStatus = function (status) {
+    return {
+        type: S_S,
+        status
+    };
+};
+
 export const setUserFollowingInProgress = function (inProgress, userId) {
     return {
         type: S_U_F_I_P,
@@ -161,9 +175,14 @@ export const toggleFollowThunkCreator = ({id, followed}) => {
 export const getUserThunkCreator = (userIdForRequest) => {
     return (dispatch) => {
         dispatch(setUser(null));
+        dispatch(setStatus(null));
 
         usersAPI.getUser(userIdForRequest).then(data => {
             dispatch(setUser(data));
+
+            usersAPI.getUserStatus(userIdForRequest).then(status => {
+                dispatch(setStatus(status));
+            });
         });
     };
 };

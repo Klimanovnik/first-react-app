@@ -16,10 +16,13 @@ const User = function (props) {
             }
             <div className={styles.userDescription}>
                 <div className={styles.userFullName}>
-                    {props.user?.fullName}
+                    Name: {props.user?.fullName || "------"}
                 </div>
                 <div className={styles.userAbout}>
-                    {props.user?.aboutMe}
+                    About: {props.user?.aboutMe || "------"}
+                </div>
+                <div className={styles.status}>
+                    Status: {props.status || "------"}
                 </div>
             </div>
         </section>
