@@ -1,6 +1,6 @@
 import React from "react";
 import {connect} from "react-redux";
-import {putMyStatusThunkCreator} from "../../../redux/profileReducer";
+import {getMyStatusThunkCreator, putMyStatusThunkCreator} from "../../../redux/profileReducer";
 
 const mapStateToProps = function (state) {
     return {
@@ -10,7 +10,8 @@ const mapStateToProps = function (state) {
 };
 
 const mapDispatchToProps = {
-    putMyStatusThunkCreator
+    putMyStatusThunkCreator,
+    getMyStatusThunkCreator
 };
 
 class MyStatus extends React.Component {
@@ -21,6 +22,30 @@ class MyStatus extends React.Component {
             myStatus: this.props.myStatus,
             isEditMode: false
         };
+    }
+
+    componentDidMount() {
+        if (this.props.auth.isAuth) {
+            console.log("With Mount")
+            this.props.getMyStatusThunkCreator(this.props.auth.authData.id);
+        }
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+
+        const myStatus = this.props.myStatus;
+        const isAuth = this.props.auth.isAuth;
+
+        if (isAuth && isAuth !== prevProps.auth.isAuth) {
+            console.log("With Update")
+            this.props.getMyStatusThunkCreator(this.props.auth.authData.id);
+        }
+
+        if (myStatus !== prevProps.myStatus) {
+            this.setState({
+                myStatus: myStatus
+            });
+        }
     }
 
     onBlur = () => {

@@ -1,4 +1,5 @@
-import {myProfileAPI} from "../api/api";
+import {myProfileAPI, usersAPI} from "../api/api";
+import {setStatus} from "./usersReducer";
 
 const S_N_S = "SET_NEW_STATUS";
 
@@ -100,6 +101,14 @@ export const putMyStatusThunkCreator = (newStatus) => {
             if (data.resultCode === 0) {
                 dispatch(setNewStatus(newStatus));
             }
+        });
+    };
+};
+
+export const getMyStatusThunkCreator = (myId) => {
+    return (dispatch) => {
+        usersAPI.getUserStatus(myId).then(status => {
+            dispatch(setNewStatus(status));
         });
     };
 };
