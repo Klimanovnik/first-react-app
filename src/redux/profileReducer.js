@@ -1,5 +1,4 @@
 import {myProfileAPI, usersAPI} from "../api/api";
-import {setStatus} from "./usersReducer";
 
 const S_N_S = "SET_NEW_STATUS";
 
@@ -22,8 +21,7 @@ const initialState = {
                 id: 3,
                 text: "Ololo"
             }
-        ],
-        newPostText: ""
+        ]
     },
     myStatus: "",
     description: {
@@ -52,7 +50,7 @@ export const profileReducer = function (state = initialState, action) {
 
     switch (action.type) {
         case "ADD-NEW-POST":
-            if (state.myPosts.newPostText === "") {
+            if (action.newPost === "") {
                 return state;
             }
 
@@ -64,18 +62,9 @@ export const profileReducer = function (state = initialState, action) {
                         ...state.myPosts.posts,
                         {
                             id: state.myPosts.posts.length,
-                            text: state.myPosts.newPostText
+                            text: action.newPost
                         }
-                    ],
-                    newPostText: ""
-                }
-            };
-        case "CHANGE-NEW-POST-FIELD":
-            return {
-                ...state,
-                myPosts: {
-                    ...state.myPosts,
-                    newPostText: action.newPostText
+                    ]
                 }
             };
         case S_N_S:

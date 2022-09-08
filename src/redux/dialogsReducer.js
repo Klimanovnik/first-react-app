@@ -10,15 +10,13 @@ const initialState = {
         {id: 1, text: "Yo"},
         {id: 2, text: "How are you ?"},
         {id: 3, text: "I'am OK"}
-    ],
-    newMessageText: "",
+    ]
 };
 
 const dialogsReducer = function (state = initialState, action) {
-
     switch (action.type) {
         case "ADD-NEW-MESSAGE":
-            if (state.newMessageText === "") {
+            if (action.message === "") {
                 return state;
             }
 
@@ -28,15 +26,9 @@ const dialogsReducer = function (state = initialState, action) {
                     ...state.messages,
                     {
                         id: state.messages.length,
-                        text: state.newMessageText
+                        text: action.message
                     }
-                ],
-                newMessageText: ""
-            };
-        case "CHANGE-NEW-MESSAGE-TEXT":
-            return {
-                ...state,
-                newMessageText: action.newMessageText
+                ]
             };
         default:
             return state;

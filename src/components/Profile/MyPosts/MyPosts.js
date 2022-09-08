@@ -1,35 +1,15 @@
 import styles from './MyPosts.module.css';
 import Post from './Post/Post.js';
+import AddPost from "./AddPost";
 
-function MyPosts(props) {
-
-    const onPostChange = function (event) {
-        props.changeNewPostField(event.currentTarget.value);
-    };
-
-    const onAddPost = function () {
-        props.addNewPost();
-    };
-
-    const onEnter = function (event) {
-        if (event.code === "Enter" && !event.repeat) {
-            onAddPost();
-        }
-    };
-
+function MyPosts({ myPosts, addNewPost }) {
     return (
         <section className={styles.myposts}>
             <div className={styles.addPost}>
-                <input
-                    type="text"
-                    value={props.myPosts.newPostText}
-                    onChange={onPostChange}
-                    onKeyDown={onEnter}
-                />
-                <button onClick={onAddPost}>Add Post</button>
+                <AddPost onSubmit={({ newPost }) => addNewPost(newPost)}/>
             </div>
             <div className={styles.posts}>
-                {props.myPosts.posts.map(post => <Post key={post.id} postText={post.text}/>)}
+                {myPosts.posts.map(post => <Post key={post.id} postText={post.text}/>)}
             </div>
         </section>
     );

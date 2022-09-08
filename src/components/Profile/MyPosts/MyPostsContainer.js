@@ -9,15 +9,10 @@ const mapStateToProps = function (state) {
 
 const mapDispatchToProps = function (dispatch) {
     return {
-        addNewPost() {
+        addNewPost(newPost) {
             dispatch({
-                type: "ADD-NEW-POST"
-            });
-        },
-        changeNewPostField(newValue) {
-            dispatch({
-                type: "CHANGE-NEW-POST-FIELD",
-                newPostText: newValue
+                type: "ADD-NEW-POST",
+                newPost
             });
         }
     };

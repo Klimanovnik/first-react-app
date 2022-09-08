@@ -11,15 +11,10 @@ const mapStateToProps = function (state) {
 
 const mapDispatchToProps = function (dispatch) {
     return {
-        addNewMessage() {
+        addNewMessage(message) {
             dispatch({
-                type: "ADD-NEW-MESSAGE"
-            });
-        },
-        changeNewMessage(newValue) {
-            dispatch({
-                type: "CHANGE-NEW-MESSAGE-TEXT",
-                newMessageText: newValue
+                type: "ADD-NEW-MESSAGE",
+                message
             });
         }
     };
