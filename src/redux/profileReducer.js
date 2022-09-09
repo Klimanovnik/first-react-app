@@ -50,10 +50,6 @@ export const profileReducer = function (state = initialState, action) {
 
     switch (action.type) {
         case "ADD-NEW-POST":
-            if (action.newPost === "") {
-                return state;
-            }
-
             return {
                 ...state,
                 myPosts: {
