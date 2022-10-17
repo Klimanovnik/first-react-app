@@ -1,6 +1,7 @@
 import {authAPI} from "../api/api";
 
 const S_A_D = "SET_AUTH_DATA";
+const C_A_D = "CLEAR_AUTH_DATA";
 
 const initialState = {
     isAuth: false,
@@ -22,6 +23,8 @@ export const authReducer = function (state = initialState, action) {
                     ...action.authData
                 }
             };
+        case C_A_D:
+            return initialState;
         default:
             return state;
     }
@@ -36,11 +39,37 @@ export const setAuthData = function (authData) {
     };
 };
 
+const clearAuthData = function () {
+    return {
+        type: C_A_D
+    };
+};
+
 export const checkAuthThunkCreator = () => {
     return (dispatch) => {
         authAPI.checkAuth().then(({ resultCode, data }) => {
             if (resultCode === 0) {
                 dispatch(setAuthData(data));
+            }
+        });
+    };
+};
+
+export const loginThunkCreator = ({ email, password, rememberMe }) => {
+    return (dispatch) => {
+        authAPI.login(email, password, rememberMe).then((data) => {
+            if (data.resultCode === 0) {
+                dispatch(checkAuthThunkCreator());
+            }
+        });
+    };
+};
+
+export const logoutThunkCreator = () => {
+    return (dispatch) => {
+        authAPI.logout().then(({ resultCode }) => {
+            if (resultCode === 0) {
+                dispatch(clearAuthData());
             }
         });
     };

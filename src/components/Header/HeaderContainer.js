@@ -1,7 +1,7 @@
 import React from "react";
 import Header from "./Header";
 import {connect} from 'react-redux';
-import {checkAuthThunkCreator} from "../../redux/authReducer";
+import {checkAuthThunkCreator, logoutThunkCreator} from "../../redux/authReducer";
 
 const mapStateToProps = function (state) {
     return {
@@ -11,7 +11,8 @@ const mapStateToProps = function (state) {
 };
 
 const mapDispatchToProps = {
-    checkAuthThunkCreator
+    checkAuthThunkCreator,
+    logoutThunkCreator
 };
 
 class HeaderServerAPI extends React.Component {

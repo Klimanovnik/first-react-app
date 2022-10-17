@@ -1,14 +1,17 @@
 import { reduxForm, Field } from "redux-form";
+import {connect} from "react-redux";
+import {loginThunkCreator} from "../../redux/authReducer";
+import {Redirect} from "react-router-dom";
 
 const LoginForm = (props) => {
     return (
         <form onSubmit={props.handleSubmit}>
             <div>
                 <Field
-                    name="login"
+                    name="email"
                     component="input"
                     type="text"
-                    placeholder="Login"
+                    placeholder="Email"
                 />
             </div>
             <div>
@@ -50,15 +53,31 @@ const LoginReduxForm = reduxForm({
     form: 'login'
 })(LoginForm);
 
-const onSubmit = (data) => {
-    console.log(data);
+const mapStateToProps = function (state) {
+    return {
+        isAuth: state.auth.isAuth
+    };
 };
 
-export default (props) => {
+const mapDispatchToProps = {
+    loginThunkCreator
+};
+
+const Login = (props) => {
+    const onSubmit = (formData) => {
+        props.loginThunkCreator(formData);
+    };
+
+    if (props.isAuth) {
+        return <Redirect to="/dialogs" />;
+    }
+
     return (
         <div style={{color: "#fff"}}>
             <h1>Login Form</h1>
-            <LoginReduxForm onSubmit={onSubmit}/>
+            <LoginReduxForm onSubmit={onSubmit} />
         </div>
     );
 };
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
