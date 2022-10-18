@@ -18,7 +18,7 @@ const LoginForm = (props) => {
                 <Field
                     name="password"
                     component="input"
-                    type="text"
+                    type="password"
                     placeholder="Password"
                 />
             </div>
@@ -37,6 +37,7 @@ const LoginForm = (props) => {
                     Remember me
                 </label>
             </div>
+            <div style={{color: 'red'}}>{props.error}</div>
             <div>
                 <button
                     style={{cursor: "pointer"}}
