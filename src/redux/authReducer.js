@@ -48,7 +48,7 @@ const clearAuthData = function () {
 
 export const checkAuthThunkCreator = () => {
     return (dispatch) => {
-        authAPI.checkAuth().then(({ resultCode, data }) => {
+        return authAPI.checkAuth().then(({ resultCode, data }) => {
             if (resultCode === 0) {
                 dispatch(setAuthData(data));
             }

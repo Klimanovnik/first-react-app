@@ -1,0 +1,14 @@
+.preloader {
+    border-style: solid;
+    border-top-color: transparent !important;
+    animation-name: preloader-rotate;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    animation-direction: normal;
+    display: inline-block;
+}
+
+@keyframes preloader-rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}

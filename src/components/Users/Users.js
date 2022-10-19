@@ -35,7 +35,7 @@ const Users = function (props) {
             </div>
             {
                 props.isFetching
-                    ? <Preloader/>
+                    ? <Preloader />
                     : <div>
                         {
                             props.users.map(user => {
