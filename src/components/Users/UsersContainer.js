@@ -11,13 +11,14 @@ import {
   getUsersThunkCreator,
   toggleFollowThunkCreator
 } from "../../redux/usersReducer";
+import {isAuthSelector} from "../../redux/selectors";
 
 const mapStateToProps = function (state) {
   return {
     users: state.usersPage.users,
     pagination: state.usersPage.pagination,
     isFetching: state.usersPage.isFetching,
-    isAuth: state.auth.isAuth,
+    isAuth: isAuthSelector(state),
     disabledButtons: state.usersPage.disabledButtons
   };
 };

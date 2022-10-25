@@ -1,11 +1,13 @@
 import React from "react";
 import {connect} from "react-redux";
 import {getMyStatusThunkCreator, putMyStatusThunkCreator} from "../../../redux/profileReducer";
+import {isAuthSelector} from "../../../redux/selectors";
 
 const mapStateToProps = function (state) {
     return {
         myStatus: state.profile.myStatus,
-        auth: state.auth
+        isAuth: isAuthSelector(state),
+        authData: state.auth.authData
     };
 };
 
@@ -25,17 +27,17 @@ class MyStatus extends React.Component {
     }
 
     componentDidMount() {
-        if (this.props.auth.isAuth) {
-            this.props.getMyStatusThunkCreator(this.props.auth.authData.id);
+        if (this.props.isAuth) {
+            this.props.getMyStatusThunkCreator(this.props.authData.id);
         }
     }
 
     componentDidUpdate(prevProps, prevState) {
         const myStatus = this.props.myStatus;
-        const isAuth = this.props.auth.isAuth;
+        const isAuth = this.props.isAuth;
 
-        if (isAuth && isAuth !== prevProps.auth.isAuth) {
-            this.props.getMyStatusThunkCreator(this.props.auth.authData.id);
+        if (isAuth && isAuth !== prevProps.isAuth) {
+            this.props.getMyStatusThunkCreator(this.props.authData.id);
         }
 
         if (myStatus !== prevProps.myStatus) {
@@ -69,7 +71,7 @@ class MyStatus extends React.Component {
     }
 
     render() {
-        return this.props.auth.isAuth && (
+        return this.props.isAuth && (
             <>
                 {this.state.isEditMode
                     ? <input autoFocus type="text" onKeyDown={this.onEnter} onBlur={this.onBlur}

@@ -3,6 +3,7 @@ import {logoutThunkCreator} from "../../redux/authReducer";
 import styles from './Header.module.css';
 import logo from './img/logo.png';
 import {NavLink} from "react-router-dom";
+import {isAuthSelector} from "../../redux/selectors";
 
 const Header = (props) => {
     return (
@@ -31,7 +32,7 @@ const Header = (props) => {
 
 const mapStateToProps = function (state) {
     return {
-        isAuth: state.auth.isAuth,
+        isAuth: isAuthSelector(state),
         authData: state.auth.authData
     };
 };

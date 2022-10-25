@@ -2,6 +2,7 @@ import { reduxForm, Field } from "redux-form";
 import {connect} from "react-redux";
 import {loginThunkCreator} from "../../redux/authReducer";
 import {Redirect} from "react-router-dom";
+import {isAuthSelector} from "../../redux/selectors";
 
 const LoginForm = (props) => {
     return (
@@ -56,7 +57,7 @@ const LoginReduxForm = reduxForm({
 
 const mapStateToProps = function (state) {
     return {
-        isAuth: state.auth.isAuth
+        isAuth: isAuthSelector(state)
     };
 };
 
